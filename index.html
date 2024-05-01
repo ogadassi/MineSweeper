@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mine Sweeper</title>
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body onload="onInit()">
+    <h1>Mine Sweeper</h1>
+    <button onclick="onRestart()" class="emoji">😀</button>
+    <div class="btns">
+      <button onclick="getDifficulty(this)" class="diff diff1">Easy</button>
+      <button onclick="getDifficulty(this)" class="diff diff2">Medium</button>
+      <button onclick="getDifficulty(this)" class="diff diff3">Hard</button>
+    </div>
+    <table class="board-container">
+      <tbody class="board"></tbody>
+    </table>
+    <p class="footer">By: Ohad Gadassi</p>
+    <script src="main.js"></script>
+  </body>
+</html>

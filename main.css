@@ -1,0 +1,94 @@
+body {
+  background-color: rgb(203, 232, 217);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  text-align: center;
+  color: rgb(37, 104, 71);
+  font-weight: bolder;
+  font-family: cursive;
+}
+.board-container {
+  margin: auto;
+}
+
+.hidden {
+  display: none;
+}
+
+table,
+td {
+  margin: 50px auto;
+  background-color: rgba(50, 136, 90, 0.3);
+  border: 1px solid rgb(37, 104, 71);
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  border-radius: 10px;
+  table-layout: fixed;
+}
+
+td {
+  cursor: pointer;
+}
+
+td .empty-cell {
+  margin: 50px auto;
+  background-color: rgb(141, 161, 151);
+  border: 1px solid rgb(2, 249, 126);
+  border: 1px solid rgb(157, 62, 62);
+}
+
+.footer {
+  background-color: rgb(184, 236, 219);
+  border-radius: 30px;
+  width: 200px;
+  text-align: center;
+  margin: 20px auto;
+  cursor: context-menu;
+  border: 3px solid rgba(50, 136, 90, 0.429);
+}
+.emoji {
+  background-color: rgba(50, 136, 90, 0.429);
+  border: 1px solid rgb(37, 104, 71);
+  height: 30px;
+  border-radius: 30px;
+  cursor: pointer;
+  color: rgb(12, 43, 28);
+  font-weight: bolder;
+  font-family: cursive;
+}
+
+.lives {
+  background-color: rgba(50, 136, 90, 0.429);
+  border: 1px solid rgb(37, 104, 71);
+  text-align: center;
+  width: 90px;
+  height: 25px;
+  border-radius: 30px;
+  margin-bottom: 10px;
+  color: rgb(12, 43, 28);
+  font-weight: bolder;
+  font-family: cursive;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.diff {
+  background-color: rgba(50, 136, 90, 0.429);
+  border: 1px solid rgb(37, 104, 71);
+  height: 30px;
+  border-radius: 30px;
+  margin: 10px 0;
+  cursor: pointer;
+  color: rgb(12, 43, 28);
+  font-weight: bolder;
+  font-family: cursive;
+}
+
