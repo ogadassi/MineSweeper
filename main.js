@@ -95,7 +95,7 @@ function onCellClicked(elCell, i, j) {
   if (gIsGameOn) {
     const cell = gBoard[i][j];
     if (gIsFirstClick) {
-      setMines(gBoard, i, j); // Pass the coordinates of the first clicked cell
+      setMines(gBoard, i, j);
       for (let i = 0; i < gBoard.length; i++) {
         for (let j = 0; j < gBoard[i].length; j++) {
           gBoard[i][j].minesAroundCount = setMinesNegsCount(gBoard, i, j);
@@ -105,7 +105,6 @@ function onCellClicked(elCell, i, j) {
     }
 
     if (cell.isShown) return;
-
     if (cell.isMarked) return;
 
     if (!cell.isMine) {
@@ -116,6 +115,10 @@ function onCellClicked(elCell, i, j) {
     if (!cell.isMine && !cell.isShown) {
       cell.isShown = true;
       gShownCells++;
+      // If the clicked cell has no mines around it, reveal its neighbors recursively
+      if (cell.minesAroundCount === 0) {
+        revealEmptyNeighbors(gBoard, i, j);
+      }
     }
     if (cell.isMine && cell.isShown) return;
     if (cell.isMine) {
@@ -210,5 +213,33 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
-//predictable static mines
-//isMine: i === (board.length) / 2 && j === (board[i].length) / 2  i === (board.length + 1) / 2 && j === (board[i].length) / 2,
+function revealEmptyNeighbors(board, rowIdx, colIdx) {
+  for (let i = rowIdx - 1; i <= rowIdx + 1; i++) {
+    if (i < 0 || i >= gLevel.SIZE) continue;
+    for (let j = colIdx - 1; j <= colIdx + 1; j++) {
+      if (j < 0 || j >= gLevel.SIZE) continue;
+      if (i === rowIdx && j === colIdx) continue;
+
+      let cell = board[i][j];
+
+      // If the cell is already shown or marked, continue to the next neighbor
+      if (cell.isShown || cell.isMarked) continue;
+
+      // If the cell has no mines around it, reveal it and recursively reveal its neighbors
+      if (cell.minesAroundCount === 0) {
+        let elCell = document.querySelector(`.row${i}-col${j}`);
+        elCell.style.backgroundColor = "white";
+        cell.isShown = true;
+        gShownCells++;
+        revealEmptyNeighbors(board, i, j); // Recursively reveal neighbors
+      } else {
+        // If the cell has mines around it, reveal it but don't explore its neighbors
+        let elCell = document.querySelector(`.row${i}-col${j}`);
+        elCell.style.backgroundColor = "white";
+        elCell.innerText = cell.minesAroundCount;
+        cell.isShown = true;
+        gShownCells++;
+      }
+    }
+  }
+}
